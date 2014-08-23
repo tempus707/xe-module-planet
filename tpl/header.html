@@ -1,20 +1,30 @@
 <!--%import("js/planet.js")-->
 
-<h3 class="xeAdmin">{$lang->planet} <span class="gray">{$lang->cmd_management}</span></h3>
 
-<div class="infoText">{nl2br($lang->about_planet)}</div>
+<div class="x_page-header">
+	<h1>
+		{$lang->planet} {$lang->cmd_management}
 
-<div class="header4">
-	<!--@if($module_info->mid)-->
-	<h4 class="xeAdmin">{$module_info->mid} <!--@if($module_info->is_default=='Y')--><span class="bracket">({$lang->is_default})</span><!--@end--> <span class="vr">|</span> <a href="{getUrl('','mid',$module_info->mid)}" onclick="window.open(this.href); return false;" class="view">View</a></h4>
-	<!--@end-->
+		<span class="path" cond="$module_info->mid">
+			&gt; <a href="{getSiteUrl($module_info->domain,'','mid',$module_info->mid)}" target="_blank"|cond="$module=='admin'">{$module_info->mid}<block cond="$module_info->is_default=='Y'">({$lang->is_default})</block></a>
+		</span>
+		<a href="#aboutModule" data-toggle class="x_icon-question-sign">{$lang->help}</a>
 
-	<ul class="localNavigation">
-		<li <!--@if($act=='dispPlanetAdminSetup')-->class="on"<!--@end-->><a href="{getUrl('act','dispPlanetAdminSetup','module_srl','')}">{$lang->cmd_planet_setup}</a></li>
-		<li <!--@if($act=='dispPlanetAdminList')-->class="on"<!--@end-->><a href="{getUrl('act','dispPlanetAdminList','module_srl','')}">{$lang->cmd_planet_list}</a></li>
-		<li <!--@if($act=='dispPlanetAdminGrantInfo')-->class="on"<!--@end-->><a href="{getUrl('act','dispPlanetAdminGrantInfo')}">{$lang->cmd_manage_grant}</a></li>
-		<li <!--@if($act=='dispPlanetAdminSkinInfo')-->class="on"<!--@end-->><a href="{getUrl('act','dispPlanetAdminSkinInfo')}">{$lang->cmd_manage_skin}</a></li>
-		<li <!--@if($act=='dispPlanetAdminAdditionalSetup')-->class="on"<!--@end-->><a href="{getUrl('act','dispPlanetAdminAdditionalSetup')}">{$lang->cmd_additional_setup}</a></li>
-	</ul>
+	</h1>
+
 </div>
+<p class="x_alert x_alert-info" id="aboutModule" hidden>{nl2br($lang->about_planet)}</p>
+
+
+
+
+<ul class="x_nav x_nav-tabs"><!--  cond="$module_info && $act != 'dispBoardAdminContent' && $act != 'dispBoardAdminDeleteBoard'" -->
+	<li class="x_active"|cond="$act=='dispPlanetAdminSetup'"><a href="{getUrl('act','dispPlanetAdminSetup')}"">{$lang->cmd_planet_setup}</a></li>
+	<li class="x_active"|cond="$act=='dispPlanetAdminList'"><a href="{getUrl('act','dispPlanetAdminList')}"">{$lang->cmd_planet_list}</a></li>
+	<li class="x_active"|cond="$act=='dispPlanetAdminGrantInfo'"><a href="{getUrl('act','dispPlanetAdminGrantInfo')}"">{$lang->cmd_manage_grant}</a></li>
+	<li class="x_active"|cond="$act=='dispPlanetAdminSkinInfo'"><a href="{getUrl('act','dispPlanetAdminSkinInfo')}"">{$lang->cmd_manage_skin}</a></li>
+	<li class="x_active"|cond="$act=='dispPlanetAdminAdditionalSetup'"><a href="{getUrl('act','dispPlanetAdminAdditionalSetup')}"">{$lang->cmd_additional_setup}</a></li>
+</ul>
+
+
 
